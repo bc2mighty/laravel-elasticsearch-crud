@@ -99,3 +99,22 @@ Route::get("/delete", function () use ($client) {
         dd("Error Message", $e->getMessage());
     }
 });
+
+Route::get("/search", function () use ($client) {
+    $params = [
+        "index" => "products",
+        "body" => [
+            "query" => [
+                "match" => [
+                    "accepts" => "GBP"
+                ]
+            ]
+        ]
+    ];
+    try {
+        $result = $client->search($params);
+        dd($result);
+    } catch (Missing404Exception $e) {
+        dd("Error Message", $e->getMessage());
+    }
+});
