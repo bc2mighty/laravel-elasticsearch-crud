@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/product', function () use ($client) {
     $params = [
         "index" => "products",
-        "id" => "1234",
+        "id" => "12345",
     ];
     $result = $client->get($params);
     dd($result);
@@ -66,3 +66,23 @@ Route::get("/save", function () use ($client) {
     dd($result);
 });
 
+Route::get("/update", function () use ($client) {
+    $params = [
+        "index" => "products",
+        "id" => "12345",
+        "body" => [
+            "doc" => [
+                "title" => "Salah Clothes",
+                "currencies" => [
+                    "accepts" => [
+                        "GBP",
+                        "USD",
+                    ],
+                    "default" => "NGN"
+                ]
+            ]
+        ],
+    ];
+    $result = $client->update($params);
+    dd($result);
+});
