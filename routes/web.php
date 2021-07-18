@@ -86,3 +86,16 @@ Route::get("/update", function () use ($client) {
     $result = $client->update($params);
     dd($result);
 });
+
+Route::get("/delete", function () use ($client) {
+    $params = [
+        "index" => "products",
+        "id" => "1234567"
+    ];
+    try {
+        $result = $client->delete($params);
+        dd($result);
+    } catch (Missing404Exception $e) {
+        dd("Error Message", $e->getMessage());
+    }
+});
