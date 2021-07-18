@@ -2,6 +2,7 @@
 
 use Elasticsearch\ClientBuilder;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
+use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -134,6 +135,27 @@ Route::get("/search/in/array", function () use ($client) {
         $result = $client->search($params);
         dd($result);
     } catch (Missing404Exception $e) {
+        dd("Error Message", $e->getMessage());
+    }
+});
+
+Route::get("/search/json", function () use ($client) {
+    $json = '{
+        "query" : {
+            "match_phrase" : {
+                "currencies.accepts" : "KES"
+            }
+        }
+    }';
+
+    $params = [
+        "index" => "products",
+        "body" => $json
+    ];
+    try {
+        $result = $client->search($params);
+        dd($result);
+    } catch (BadRequest400Exception $e) {
         dd("Error Message", $e->getMessage());
     }
 });
