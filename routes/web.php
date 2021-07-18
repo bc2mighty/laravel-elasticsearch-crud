@@ -118,3 +118,22 @@ Route::get("/search", function () use ($client) {
         dd("Error Message", $e->getMessage());
     }
 });
+
+Route::get("/search/in/array", function () use ($client) {
+    $params = [
+        "index" => "products",
+        "body" => [
+            "query" => [
+                "match_phrase" => [
+                    "currencies.accepts" => "KES"
+                ]
+            ]
+        ]
+    ];
+    try {
+        $result = $client->search($params);
+        dd($result);
+    } catch (Missing404Exception $e) {
+        dd("Error Message", $e->getMessage());
+    }
+});
