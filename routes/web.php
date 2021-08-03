@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //$client = ClientBuilder::create()
-//    ->setElasticCloudId("Selar:dXMtd2VzdDEuZ2NwLmNsb3VkLmVzLmlvJGE1OGExYjI1MzA4YTQ0ZDVhMzMwNzQyNDFjZDQ3ZGQ3JGU3NjQwYWE3MzI0MjQ2OTliMTFjOGZhMDBhMGRkZWUx")
-//    ->setBasicAuthentication("elastic", "KmC2uadBTxabxknPZUFb8AgJ")
+//    ->setElasticCloudId($cloud_id)
+//    ->setBasicAuthentication("elastic", $password)
 //    ->build();
 $client = ClientBuilder::create()
     ->setHosts(['localhost:9200'])
