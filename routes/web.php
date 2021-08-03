@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//$client = ClientBuilder::create()
+//    ->setElasticCloudId("Selar:dXMtd2VzdDEuZ2NwLmNsb3VkLmVzLmlvJGE1OGExYjI1MzA4YTQ0ZDVhMzMwNzQyNDFjZDQ3ZGQ3JGU3NjQwYWE3MzI0MjQ2OTliMTFjOGZhMDBhMGRkZWUx")
+//    ->setBasicAuthentication("elastic", "KmC2uadBTxabxknPZUFb8AgJ")
+//    ->build();
 $client = ClientBuilder::create()
     ->setHosts(['localhost:9200'])
     ->build();
 //$result = $client->info();
+//dd($result);
 
 Route::get('/', function () {
     return view('welcome');
